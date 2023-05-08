@@ -24,8 +24,7 @@ namespace Calculator
 
         private bool isError { get; set; } = false;
 
-        // EVENT LISTENER
-
+        // EVENT LISTENER and FORM CONTROLS
         private void Keypad_Click(object sender, EventArgs e)
         {
             if(isError)
@@ -60,6 +59,7 @@ namespace Calculator
                 return;
             }
 
+            PerformEquation();
         }
 
         private void Operation_Click(object sender, EventArgs e)
@@ -69,7 +69,6 @@ namespace Calculator
                 ClearError();
                 return;
             }
-            /// check if stored operand and currentInput have value - perform equals if true
 
             string value = (sender as Button).Text;
 
@@ -96,8 +95,6 @@ namespace Calculator
             }
         }
 
-        
-
         private void Period_Click(object sender, EventArgs e)
         {
             if (isError)
@@ -108,7 +105,6 @@ namespace Calculator
 
             AddPeriod();
         }
-
 
         private void Clear_Click(object sender, EventArgs e)
         {
@@ -128,7 +124,6 @@ namespace Calculator
                 ClearError();
                 return;
             }
-
         }
 
         private void ConvertToBinary_Click(object sender, EventArgs e)
@@ -138,7 +133,6 @@ namespace Calculator
                 ClearError();
                 return;
             }
-
         }
 
         private void ConvertLocational_Click(object sender, EventArgs e)
@@ -148,7 +142,6 @@ namespace Calculator
                 ClearError();
                 return;
             }
-
         }
 
         private void CalculatorForm_KeyDown(object sender, KeyEventArgs e)
@@ -205,8 +198,27 @@ namespace Calculator
         }
 
 
-        // HELPER METHODS
+        // Helper Methods
 
+        private void ErrorState()
+        {
+            isError = true;
+            StoredOperationLabel.Text = "ERROR";
+        }
+
+        private void ClearError()
+        {
+            ClearAll();
+            isError = false;
+        }
+
+        private void ClearAll()
+        {
+            StoredOperand = null;
+            StoredOperation = null;
+            currentInputStringBuilder.Clear();
+            CurrentInputLabel.Text = "";
+        }
         private void AppendDigit(int n)
         {
             if(n >= 0 && n < 10)
@@ -215,6 +227,13 @@ namespace Calculator
             }
 
             UpdateDisplayInputLabel();
+        }
+        private void AddPeriod()
+        {
+            if (!currentInputStringBuilder.ToString().Any(c => c.Equals('.')))
+            {
+                currentInputStringBuilder.Append('.');
+            }
         }
 
         private void UpdateDisplayInputLabel()
@@ -251,13 +270,50 @@ namespace Calculator
             StoredOperationLabel.Text = operation;
         }
 
+        private void PerformEquation()
+        {
+            try
+            {
+                if (StoredOperand != null && StoredOperation != null && currentInputStringBuilder.Length != 0)
+                {
+                    Operation o = (Operation)StoredOperation;
+                    double storedOperand = (double)StoredOperand;
+                    double currentOperand = Double.Parse(currentInputStringBuilder.ToString());
+                    double result = PerformOperation(o, storedOperand, currentOperand);
+
+
+                    currentInputStringBuilder.Clear();
+                    currentInputStringBuilder.Append(result);
+                    
+                    storedOperand = result;
+                    StoredOperation = null;
+
+                    UpdateDisplayInputLabel();
+                    UpdateStoredOperationLabel();
+                }
+            } catch
+            {
+                ErrorState();
+            }
+            
+        }
+
+        private void OperationAction(Operation o)
+        {
+
+            StoredOperation = o;
+            UpdateStoredOperationLabel();
+
+            StoreOperand();
+        }
         private void StoreOperand()
         {
             try
             {
                 StoredOperand = Double.Parse(currentInputStringBuilder.ToString());
                 currentInputStringBuilder.Clear();
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -286,48 +342,8 @@ namespace Calculator
                     break;
             }
 
-
             return result;
         }
 
-        
-
-        private void AddPeriod()
-        {
-            if (!currentInputStringBuilder.ToString().Any(c => c.Equals('.')))
-            {
-                currentInputStringBuilder.Append('.');
-            }
-        }
-        private void ErrorState()
-        {
-            isError = true;
-            StoredOperationLabel.Text = "ERROR";
-        }
-
-        private void ClearError()
-        {
-            ClearAll();
-            isError = false;
-        }  
-
-        private void ClearAll()
-        {
-            StoredOperand = null;
-            StoredOperation = null;
-            currentInputStringBuilder.Clear();
-            CurrentInputLabel.Text = "";
-        }
-
-        private void OperationAction(Operation o)
-        {
-
-            StoredOperation = o;
-            UpdateStoredOperationLabel();
-
-            StoreOperand();
-        }
-
-        
     }
 }

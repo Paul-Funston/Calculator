@@ -344,10 +344,7 @@ namespace Calculator
 
         private void OperationAction(Operation o)
         {
-
-            
             // currentInput, Stored Operand, and stored Operation - perform stored operation then replace storedOperation
-            
             if (StoredOperand != null && StoredOperation != null && currentInputStringBuilder.Length > 0)
             {
                 PerformEquation();
@@ -359,19 +356,17 @@ namespace Calculator
             {
                 StoredOperation = o;
             }
-            // No Stored Operation Store the Operation, and store current input as storedOperand
 
+            // No Stored Operation Store the Operation, and store current input as storedOperand
             if(StoredOperation == null && currentInputStringBuilder.Length > 0)
             {
                 StoreOperand();
                 StoredOperation = o;
             }
 
-
             UpdateStoredOperationLabel();
-
-            
         }
+
         private void StoreOperand()
         {
             try
@@ -381,7 +376,7 @@ namespace Calculator
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                ErrorState();
             }
         }
 

@@ -124,6 +124,22 @@ namespace Calculator
                 ClearError();
                 return;
             }
+
+            try
+            {
+                double inputNumber = Double.Parse(currentInputStringBuilder.ToString());
+                if(isBinary(inputNumber))
+                {
+                    double result = DecimalToBinary(inputNumber);
+                    currentInputStringBuilder.Clear();
+                    currentInputStringBuilder.Append(result);
+                    UpdateDisplayInputLabel();
+                }
+            }
+            catch
+            {
+                ErrorState();
+            }
         }
 
         private void ConvertToBinary_Click(object sender, EventArgs e)
@@ -133,6 +149,20 @@ namespace Calculator
                 ClearError();
                 return;
             }
+
+            try
+            {
+                double inputNumber = Double.Parse(currentInputStringBuilder.ToString());
+
+                if(isWholeNumber(inputNumber))
+                {
+                    double result = UnsignedBinaryToDecimal(inputNumber);
+                    currentInputStringBuilder.Clear();
+                    currentInputStringBuilder.Append(result);
+                    UpdateDisplayInputLabel();
+                }
+
+            } catch { ErrorState(); }
         }
 
         private void ConvertLocational_Click(object sender, EventArgs e)
@@ -300,6 +330,8 @@ namespace Calculator
 
         private void OperationAction(Operation o)
         {
+            // 
+
 
             StoredOperation = o;
             UpdateStoredOperationLabel();
@@ -345,5 +377,92 @@ namespace Calculator
             return result;
         }
 
+        private bool isBinary(double n)
+        {
+            if (n < 0 || !isWholeNumber(n))
+            {
+                return false;
+            }
+
+            while (n > 0)
+            {
+                double digit = n % 10;
+
+                if (digit > 1)
+                {
+                    return false;
+                }
+
+                n = n / 10;
+            }
+
+            return true;
+
+        }
+
+        private bool isWholeNumber(double n)
+        {
+            return n == (int)n;
+        }
+
+        private double UnsignedBinaryToDecimal(double n)
+        {
+            if (!isBinary(n))
+            {
+                Console.WriteLine($"{n} is not a binary number.");
+                return -1;
+            }
+
+            int i = 0;
+            double result = 0;
+
+            while (n > 0)
+            {
+                double digit = n % 10;
+
+                result += digit * (int)Math.Pow(2, i);
+                n = n / 10;
+                i++;
+            }
+
+            return result;
+        }
+
+        private double DecimalToBinary(double n)
+        {
+            // No negative numbers
+            if (n < 0) { return -1; }
+
+            int value = 0;
+            int i = 0;
+
+            // Find scale of n
+            while (value < n)
+            {
+                value = (int)Math.Pow(2, i++);
+            }
+
+            i--;
+
+            int result = 0;
+
+            // build binary number
+            
+            while (n > 0)
+            {
+                if (i < 0) { break; }
+
+                value = (int)Math.Pow(2, i);
+                if (n >= value)
+                {
+                    n -= value;
+                    result += 1 * (int)Math.Pow(10, i);
+                }
+
+                i--;
+            }
+
+            return result;
+        }
     }
 }

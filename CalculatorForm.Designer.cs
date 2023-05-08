@@ -60,7 +60,8 @@
             this.ClearButton.Margin = new System.Windows.Forms.Padding(5);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(70, 50);
-            this.ClearButton.TabIndex = 18;
+            this.ClearButton.TabIndex = 3;
+            this.ClearButton.TabStop = false;
             this.ClearButton.Text = "C";
             this.ClearButton.UseVisualStyleBackColor = true;
             this.ClearButton.Click += new System.EventHandler(this.Clear_Click);
@@ -73,7 +74,8 @@
             this.KeypadZero.Margin = new System.Windows.Forms.Padding(5);
             this.KeypadZero.Name = "KeypadZero";
             this.KeypadZero.Size = new System.Drawing.Size(70, 50);
-            this.KeypadZero.TabIndex = 0;
+            this.KeypadZero.TabIndex = 2;
+            this.KeypadZero.TabStop = false;
             this.KeypadZero.Text = "0";
             this.KeypadZero.UseVisualStyleBackColor = true;
             this.KeypadZero.Click += new System.EventHandler(this.Keypad_Click);
@@ -86,7 +88,8 @@
             this.KeypadPeriod.Margin = new System.Windows.Forms.Padding(5);
             this.KeypadPeriod.Name = "KeypadPeriod";
             this.KeypadPeriod.Size = new System.Drawing.Size(70, 50);
-            this.KeypadPeriod.TabIndex = 19;
+            this.KeypadPeriod.TabIndex = 1;
+            this.KeypadPeriod.TabStop = false;
             this.KeypadPeriod.Text = ".";
             this.KeypadPeriod.UseVisualStyleBackColor = true;
             this.KeypadPeriod.Click += new System.EventHandler(this.Period_Click);
@@ -101,7 +104,8 @@
             this.EqualsButton.Margin = new System.Windows.Forms.Padding(5);
             this.EqualsButton.Name = "EqualsButton";
             this.EqualsButton.Size = new System.Drawing.Size(70, 50);
-            this.EqualsButton.TabIndex = 14;
+            this.EqualsButton.TabIndex = 0;
+            this.EqualsButton.TabStop = false;
             this.EqualsButton.Text = "=";
             this.EqualsButton.UseVisualStyleBackColor = false;
             this.EqualsButton.Click += new System.EventHandler(this.Equals_Click);
@@ -115,6 +119,7 @@
             this.OperationSum.Name = "OperationSum";
             this.OperationSum.Size = new System.Drawing.Size(70, 50);
             this.OperationSum.TabIndex = 10;
+            this.OperationSum.TabStop = false;
             this.OperationSum.Text = "+";
             this.OperationSum.UseVisualStyleBackColor = true;
             this.OperationSum.Click += new System.EventHandler(this.Operation_Click);
@@ -128,6 +133,7 @@
             this.OperationMinus.Name = "OperationMinus";
             this.OperationMinus.Size = new System.Drawing.Size(70, 50);
             this.OperationMinus.TabIndex = 11;
+            this.OperationMinus.TabStop = false;
             this.OperationMinus.Text = "-";
             this.OperationMinus.UseVisualStyleBackColor = true;
             this.OperationMinus.Click += new System.EventHandler(this.Operation_Click);
@@ -141,6 +147,7 @@
             this.OperationMultiply.Name = "OperationMultiply";
             this.OperationMultiply.Size = new System.Drawing.Size(70, 50);
             this.OperationMultiply.TabIndex = 12;
+            this.OperationMultiply.TabStop = false;
             this.OperationMultiply.Text = "X";
             this.OperationMultiply.UseVisualStyleBackColor = true;
             this.OperationMultiply.Click += new System.EventHandler(this.Operation_Click);
@@ -154,6 +161,7 @@
             this.OperationDivide.Name = "OperationDivide";
             this.OperationDivide.Size = new System.Drawing.Size(70, 50);
             this.OperationDivide.TabIndex = 13;
+            this.OperationDivide.TabStop = false;
             this.OperationDivide.Text = "/";
             this.OperationDivide.UseVisualStyleBackColor = true;
             this.OperationDivide.Click += new System.EventHandler(this.Operation_Click);
@@ -167,6 +175,7 @@
             this.KeypadOne.Name = "KeypadOne";
             this.KeypadOne.Size = new System.Drawing.Size(70, 50);
             this.KeypadOne.TabIndex = 1;
+            this.KeypadOne.TabStop = false;
             this.KeypadOne.Text = "1";
             this.KeypadOne.UseVisualStyleBackColor = true;
             this.KeypadOne.Click += new System.EventHandler(this.Keypad_Click);
@@ -180,6 +189,7 @@
             this.KeypadTwo.Name = "KeypadTwo";
             this.KeypadTwo.Size = new System.Drawing.Size(70, 50);
             this.KeypadTwo.TabIndex = 2;
+            this.KeypadTwo.TabStop = false;
             this.KeypadTwo.Text = "2";
             this.KeypadTwo.UseVisualStyleBackColor = true;
             this.KeypadTwo.Click += new System.EventHandler(this.Keypad_Click);
@@ -193,6 +203,7 @@
             this.KeypadThree.Name = "KeypadThree";
             this.KeypadThree.Size = new System.Drawing.Size(70, 50);
             this.KeypadThree.TabIndex = 3;
+            this.KeypadThree.TabStop = false;
             this.KeypadThree.Text = "3";
             this.KeypadThree.UseVisualStyleBackColor = true;
             this.KeypadThree.Click += new System.EventHandler(this.Keypad_Click);
@@ -206,6 +217,7 @@
             this.KeypadFour.Name = "KeypadFour";
             this.KeypadFour.Size = new System.Drawing.Size(70, 50);
             this.KeypadFour.TabIndex = 4;
+            this.KeypadFour.TabStop = false;
             this.KeypadFour.Text = "4";
             this.KeypadFour.UseVisualStyleBackColor = true;
             this.KeypadFour.Click += new System.EventHandler(this.Keypad_Click);
@@ -219,6 +231,7 @@
             this.KeypadFive.Name = "KeypadFive";
             this.KeypadFive.Size = new System.Drawing.Size(70, 50);
             this.KeypadFive.TabIndex = 5;
+            this.KeypadFive.TabStop = false;
             this.KeypadFive.Text = "5";
             this.KeypadFive.UseVisualStyleBackColor = true;
             this.KeypadFive.Click += new System.EventHandler(this.Keypad_Click);
@@ -232,6 +245,7 @@
             this.Keypad6.Name = "Keypad6";
             this.Keypad6.Size = new System.Drawing.Size(70, 50);
             this.Keypad6.TabIndex = 6;
+            this.Keypad6.TabStop = false;
             this.Keypad6.Text = "6";
             this.Keypad6.UseVisualStyleBackColor = true;
             this.Keypad6.Click += new System.EventHandler(this.Keypad_Click);
@@ -245,6 +259,7 @@
             this.KeypadSeven.Name = "KeypadSeven";
             this.KeypadSeven.Size = new System.Drawing.Size(70, 50);
             this.KeypadSeven.TabIndex = 7;
+            this.KeypadSeven.TabStop = false;
             this.KeypadSeven.Text = "7";
             this.KeypadSeven.UseVisualStyleBackColor = true;
             this.KeypadSeven.Click += new System.EventHandler(this.Keypad_Click);
@@ -258,6 +273,7 @@
             this.KeypadEight.Name = "KeypadEight";
             this.KeypadEight.Size = new System.Drawing.Size(70, 50);
             this.KeypadEight.TabIndex = 8;
+            this.KeypadEight.TabStop = false;
             this.KeypadEight.Text = "8";
             this.KeypadEight.UseVisualStyleBackColor = true;
             this.KeypadEight.Click += new System.EventHandler(this.Keypad_Click);
@@ -271,6 +287,7 @@
             this.KeypadNine.Name = "KeypadNine";
             this.KeypadNine.Size = new System.Drawing.Size(70, 50);
             this.KeypadNine.TabIndex = 9;
+            this.KeypadNine.TabStop = false;
             this.KeypadNine.Text = "9";
             this.KeypadNine.UseVisualStyleBackColor = true;
             this.KeypadNine.Click += new System.EventHandler(this.Keypad_Click);
@@ -284,6 +301,7 @@
             this.ConvertToDecimal.Name = "ConvertToDecimal";
             this.ConvertToDecimal.Size = new System.Drawing.Size(70, 50);
             this.ConvertToDecimal.TabIndex = 15;
+            this.ConvertToDecimal.TabStop = false;
             this.ConvertToDecimal.Text = "DEC";
             this.ConvertToDecimal.UseVisualStyleBackColor = true;
             this.ConvertToDecimal.Click += new System.EventHandler(this.ConvertToDecimal_Click);
@@ -297,6 +315,7 @@
             this.ConvertToBinary.Name = "ConvertToBinary";
             this.ConvertToBinary.Size = new System.Drawing.Size(70, 50);
             this.ConvertToBinary.TabIndex = 16;
+            this.ConvertToBinary.TabStop = false;
             this.ConvertToBinary.Text = "BIN";
             this.ConvertToBinary.UseVisualStyleBackColor = true;
             this.ConvertToBinary.Click += new System.EventHandler(this.ConvertToBinary_Click);
@@ -310,6 +329,7 @@
             this.ConvertLocational.Name = "ConvertLocational";
             this.ConvertLocational.Size = new System.Drawing.Size(70, 50);
             this.ConvertLocational.TabIndex = 17;
+            this.ConvertLocational.TabStop = false;
             this.ConvertLocational.Text = "LOC";
             this.ConvertLocational.UseVisualStyleBackColor = true;
             this.ConvertLocational.Click += new System.EventHandler(this.ConvertLocational_Click);
@@ -318,28 +338,29 @@
             // 
             this.StoredOperationLabel.AccessibleDescription = "Label displays stored operation";
             this.StoredOperationLabel.AccessibleName = "Stored Operation";
-            this.StoredOperationLabel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.StoredOperationLabel.BackColor = System.Drawing.SystemColors.Window;
             this.StoredOperationLabel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.StoredOperationLabel.Location = new System.Drawing.Point(250, 47);
             this.StoredOperationLabel.Name = "StoredOperationLabel";
             this.StoredOperationLabel.Size = new System.Drawing.Size(70, 34);
             this.StoredOperationLabel.TabIndex = 20;
-            this.StoredOperationLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.StoredOperationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CurrentInputLabel
             // 
             this.CurrentInputLabel.AccessibleDescription = "Display for current number input";
             this.CurrentInputLabel.AccessibleName = "InputDisplay";
-            this.CurrentInputLabel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.CurrentInputLabel.BackColor = System.Drawing.SystemColors.Window;
             this.CurrentInputLabel.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.CurrentInputLabel.Location = new System.Drawing.Point(10, 47);
             this.CurrentInputLabel.Name = "CurrentInputLabel";
             this.CurrentInputLabel.Size = new System.Drawing.Size(230, 34);
             this.CurrentInputLabel.TabIndex = 21;
-            this.CurrentInputLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.CurrentInputLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // CalculatorForm
             // 
+            this.AcceptButton = this.EqualsButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.ClearButton;

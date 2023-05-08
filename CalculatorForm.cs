@@ -361,9 +361,16 @@ namespace Calculator
             }
             // No Stored Operation Store the Operation, and store current input as storedOperand
 
+            if(StoredOperation == null && currentInputStringBuilder.Length > 0)
+            {
+                StoreOperand();
+                StoredOperation = o;
+            }
+
+
             UpdateStoredOperationLabel();
 
-            StoreOperand();
+            
         }
         private void StoreOperand()
         {

@@ -1,3 +1,4 @@
+using System.DirectoryServices;
 using System.Reflection.Emit;
 using System.Text;
 
@@ -130,7 +131,7 @@ namespace Calculator
                 double inputNumber = Double.Parse(currentInputStringBuilder.ToString());
                 if(isBinary(inputNumber))
                 {
-                    double result = DecimalToBinary(inputNumber);
+                    double result = UnsignedBinaryToDecimal(inputNumber);
                     currentInputStringBuilder.Clear();
                     currentInputStringBuilder.Append(result);
                     UpdateDisplayInputLabel();
@@ -156,7 +157,7 @@ namespace Calculator
 
                 if(isWholeNumber(inputNumber))
                 {
-                    double result = UnsignedBinaryToDecimal(inputNumber);
+                    double result = DecimalToBinary(inputNumber);
                     currentInputStringBuilder.Clear();
                     currentInputStringBuilder.Append(result);
                     UpdateDisplayInputLabel();
@@ -172,6 +173,19 @@ namespace Calculator
                 ClearError();
                 return;
             }
+
+            try
+            {
+                double inputNumber = Double.Parse(currentInputStringBuilder.ToString());
+                if (isBinary(inputNumber))
+                {
+                    string result = DecimalToLocational(inputNumber);
+                    CurrentInputLabel.Text = result;
+                    
+
+                }
+
+            } catch { ErrorState(); }
         }
 
         private void CalculatorForm_KeyDown(object sender, KeyEventArgs e)
@@ -304,12 +318,12 @@ namespace Calculator
         {
             try
             {
-                if (StoredOperand != null && StoredOperation != null && currentInputStringBuilder.Length != 0)
+                if (StoredOperand != null && StoredOperation != null && currentInputStringBuilder.Length > 0)
                 {
                     Operation o = (Operation)StoredOperation;
                     double storedOperand = (double)StoredOperand;
                     double currentOperand = Double.Parse(currentInputStringBuilder.ToString());
-                    double result = PerformOperation(o, storedOperand, currentOperand);
+                    double result = GetEquationResults(o, storedOperand, currentOperand);
 
 
                     currentInputStringBuilder.Clear();
@@ -330,10 +344,23 @@ namespace Calculator
 
         private void OperationAction(Operation o)
         {
-            // 
 
+            
+            // currentInput, Stored Operand, and stored Operation - perform stored operation then replace storedOperation
+            
+            if (StoredOperand != null && StoredOperation != null && currentInputStringBuilder.Length > 0)
+            {
+                PerformEquation();
+                StoredOperation = o;
+            }
 
-            StoredOperation = o;
+            //  NO current input, storedOperand and stored Operation - replace stored Operation
+            if(StoredOperand != null && StoredOperation != null)
+            {
+                StoredOperation = o;
+            }
+            // No Stored Operation Store the Operation, and store current input as storedOperand
+
             UpdateStoredOperationLabel();
 
             StoreOperand();
@@ -351,7 +378,7 @@ namespace Calculator
             }
         }
 
-        private double PerformOperation(Operation operation, double numberOne, double numberTwo)
+        private double GetEquationResults(Operation operation, double numberOne, double numberTwo)
         {
             double result = 0;
 
@@ -393,7 +420,7 @@ namespace Calculator
                     return false;
                 }
 
-                n = n / 10;
+                n = (int)n / 10;
             }
 
             return true;
@@ -409,8 +436,7 @@ namespace Calculator
         {
             if (!isBinary(n))
             {
-                Console.WriteLine($"{n} is not a binary number.");
-                return -1;
+                throw new ArgumentException();
             }
 
             int i = 0;
@@ -421,7 +447,7 @@ namespace Calculator
                 double digit = n % 10;
 
                 result += digit * (int)Math.Pow(2, i);
-                n = n / 10;
+                n = (int)n / 10;
                 i++;
             }
 
@@ -431,7 +457,7 @@ namespace Calculator
         private double DecimalToBinary(double n)
         {
             // No negative numbers
-            if (n < 0) { return -1; }
+            if (n < 0) { throw new ArgumentException(); }
 
             int value = 0;
             int i = 0;
@@ -447,7 +473,7 @@ namespace Calculator
             int result = 0;
 
             // build binary number
-            
+
             while (n > 0)
             {
                 if (i < 0) { break; }
@@ -463,6 +489,31 @@ namespace Calculator
             }
 
             return result;
+        }
+
+        private string DecimalToLocational(double n)
+        {
+            StringBuilder result = new StringBuilder();
+            string inputNumberString = n.ToString();
+            int charCode = 65;
+
+            if(!isBinary(n))
+            {
+                throw new ArgumentException();
+            }
+
+            
+            for(int i = inputNumberString.Length - 1; i >= 0; i--)
+            {
+                if (inputNumberString[i] == '1')
+                {
+                    result.Append(Char.ConvertFromUtf32(charCode));
+                }
+
+                charCode++;
+            }
+            
+            return result.ToString();
         }
     }
 }

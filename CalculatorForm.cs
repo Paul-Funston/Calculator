@@ -247,12 +247,13 @@ namespace Calculator
         private void ErrorState()
         {
             isError = true;
-            StoredOperationLabel.Text = "ERROR";
+            CurrentInputLabel.Text = "ERROR";
         }
 
         private void ClearError()
         {
-            ClearAll();
+            currentInputStringBuilder.Clear();
+            CurrentInputLabel.Text = "";
             isError = false;
         }
 
@@ -262,6 +263,8 @@ namespace Calculator
             StoredOperation = null;
             currentInputStringBuilder.Clear();
             CurrentInputLabel.Text = "";
+            StoredOperationLabel.Text = "";
+            
         }
         private void AppendDigit(int n)
         {
